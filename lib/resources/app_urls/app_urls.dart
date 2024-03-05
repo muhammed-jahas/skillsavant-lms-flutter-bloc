@@ -7,6 +7,6 @@ class Appurls {
   static const String userLogin = '$baseUrl/api/student-login/';
 
   //Get Popular Courses
-  static const String popularCourses = 'http://10.4.5.128:8000/api/popular-courses/';
+  static const String popularCourses = 'https://skillsavant.online/api/popular-courses/';
 
 }

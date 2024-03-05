@@ -23,12 +23,11 @@ class HomeScreen extends StatelessWidget {
         backgroundColor: const Color(0XFFF8F8F8),
         appBar: AppBar(
           scrolledUnderElevation: 0,
-          
           elevation: 0,
           toolbarHeight: MediaQuery.of(context).size.height * 0.09,
           backgroundColor: AppColors.secondaryColor,
           title: const Text(
-            'WELCOME TO SKILLSAVANT, FADIL',
+            'WELCOME TO SKILLSAVANT, JAHAS',
             style: TextStyle(
                 fontWeight: FontWeight.w600,
                 fontSize: 14,
@@ -88,8 +87,7 @@ class HomeScreen extends StatelessWidget {
                                 },
                               ),
                             );
-                          }
-                          else if(state is CourseFailureState){
+                          } else if (state is CourseFailureState) {
                             debugPrint('Course Fetching Failed');
                           }
                           return SizedBox();
@@ -107,6 +105,38 @@ class HomeScreen extends StatelessWidget {
                         TextStyle(fontSize: 24, fontWeight: FontWeight.w800)),
               ),
               const SizedBox(height: 20),
+              Padding(
+                padding: const EdgeInsets.only(left: 20),
+                child: BlocBuilder<CourseBloc, CourseState>(
+                  builder: (context, state) {
+                    if (state is CourseLoadingState) {
+                      CircularProgressIndicator();
+                    } else if (state is CourseLoadSuccessState) {
+                      return Container(
+                        height: MediaQuery.of(context).size.height * 0.15 +
+                            160, // Set a minimum height if desired
+                        child: ListView.separated(
+                          itemCount: state.courses.length,
+                          padding: const EdgeInsets.all(0),
+                          scrollDirection: Axis.horizontal,
+                          separatorBuilder: (context, index) {
+                            return const SizedBox(
+                              width: 20,
+                            );
+                          },
+                          itemBuilder: (context, index) {
+                            CourseModel course = state.courses[index];
+                            return CourseCardSingle(course: course);
+                          },
+                        ),
+                      );
+                    } else if (state is CourseFailureState) {
+                      debugPrint('Course Fetching Failed');
+                    }
+                    return SizedBox();
+                  },
+                ),
+              ),
               // Padding(
               //   padding: const EdgeInsets.only(left: 20),
               //   child: Container(
@@ -147,7 +177,9 @@ class CourseCardSingle extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        Navigator.of(context).push(MaterialPageRoute(builder: (context) => VideoPlayerPage(),));
+        Navigator.of(context).push(MaterialPageRoute(
+          builder: (context) => VideoPlayerPage(),
+        ));
       },
       child: Container(
         width: MediaQuery.of(context).size.width * 0.55,
