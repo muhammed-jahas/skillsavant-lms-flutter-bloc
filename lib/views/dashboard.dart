@@ -29,7 +29,6 @@ class _DashboardState extends State<Dashboard> {
     super.initState();
     _currentIndex = widget.newindex ?? 0;
     loadPopularCourses();
-
   }
 
   @override
@@ -46,7 +45,6 @@ class _DashboardState extends State<Dashboard> {
         child: Padding(
           padding: const EdgeInsets.only(top: 0),
           child: BottomNavigationBar(
-            
             backgroundColor: AppColors.whiteColor,
             selectedItemColor: Colors.white,
             unselectedItemColor: Colors.grey.shade500,
@@ -64,45 +62,48 @@ class _DashboardState extends State<Dashboard> {
             items: [
               BottomNavigationBarItem(
                 activeIcon: Padding(
-               padding: EdgeInsets.only(bottom: 2,top: 10),
-                  child: Icon(Icons.grid_view_sharp, color: AppColors.secondaryColor),
+                  padding: EdgeInsets.only(bottom: 2, top: 10),
+                  child: Icon(Icons.grid_view_outlined,
+                      color: AppColors.secondaryColor),
                 ),
                 icon: Padding(
-                 padding: EdgeInsets.only(bottom: 2,top: 10),
+                  padding: EdgeInsets.only(bottom: 2, top: 10),
                   child: Icon(Icons.grid_view_outlined),
                 ),
                 label: '',
               ),
               BottomNavigationBarItem(
                 activeIcon: Padding(
-                 padding: EdgeInsets.only(bottom: 2,top: 10),
+                  padding: EdgeInsets.only(bottom: 2, top: 10),
                   child: Icon(Icons.search, color: AppColors.secondaryColor),
                 ),
                 icon: Padding(
-                padding: EdgeInsets.only(bottom: 2,top: 10),
+                  padding: EdgeInsets.only(bottom: 2, top: 10),
                   child: Icon(Icons.search),
                 ),
                 label: '',
               ),
               BottomNavigationBarItem(
                 activeIcon: Padding(
-                 padding: EdgeInsets.only(bottom: 2,top: 10),
-                  child: Icon(Icons.chat, color: AppColors.secondaryColor),
+                  padding: EdgeInsets.only(bottom: 2, top: 10),
+                  child: Icon(Icons.chat_bubble_outline_outlined,
+                      color: AppColors.secondaryColor),
                 ),
                 icon: Padding(
-                 padding: EdgeInsets.only(bottom: 2,top: 10),
-                  child: Icon(Icons.chat),
+                  padding: EdgeInsets.only(bottom: 2, top: 10),
+                  child: Icon(Icons.chat_bubble_outline_outlined),
                 ),
                 label: '',
               ),
               BottomNavigationBarItem(
                 activeIcon: Padding(
-                padding: EdgeInsets.only(bottom: 2,top: 10),
-                  child: Icon(Icons.history, color: AppColors.secondaryColor),
+                  padding: EdgeInsets.only(bottom: 2, top: 10),
+                  child: Icon(Icons.account_circle_outlined,
+                      color: AppColors.secondaryColor),
                 ),
                 icon: Padding(
-                 padding: EdgeInsets.only(bottom: 2,top: 10),
-                  child: Icon(Icons.history),
+                  padding: EdgeInsets.only(bottom: 2, top: 10),
+                  child: Icon(Icons.account_circle_outlined),
                 ),
                 label: '',
               ),
@@ -112,8 +113,8 @@ class _DashboardState extends State<Dashboard> {
       ),
     );
   }
-  
-   loadPopularCourses() async {
-     context.read<CourseBloc>().add(GetPopularCourses());
-   }
+
+  loadPopularCourses() async {
+    context.read<CourseBloc>().add(GetPopularCourses());
+  }
 }

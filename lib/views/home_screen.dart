@@ -189,9 +189,9 @@ class CourseCardSingle extends StatelessWidget {
           children: [
             Container(
               height: MediaQuery.of(context).size.height * 0.15,
-              decoration: const BoxDecoration(
+              decoration: BoxDecoration(
                 image: DecorationImage(
-                  image: AssetImage('assets/images/figma-course.png'),
+                  image: NetworkImage(course.coverImage),
                   fit: BoxFit.cover,
                 ),
               ),
@@ -208,7 +208,11 @@ class CourseCardSingle extends StatelessWidget {
                     CircleAvatar(
                       radius: 14,
                       child: Text(
-                        'F',
+                        course.instructorFirstName.isNotEmpty
+                            ? course.instructorFirstName
+                                .substring(0, 1)
+                                .toUpperCase()
+                            : '',
                         style: TextStyle(
                           fontWeight: FontWeight.w600,
                           fontSize: 10,
@@ -240,12 +244,12 @@ class CourseCardSingle extends StatelessWidget {
                     SizedBox(height: 10),
                     Container(
                       decoration: BoxDecoration(
-                        color: AppColors.primaryColor.shade100,
+                        color: AppColors.primaryColor.shade50,
                       ),
                       child: Padding(
                         padding: const EdgeInsets.all(6.0),
                         child: Text(
-                          'Beginner',
+                          course.level,
                           style: TextStyle(
                             fontSize: 8,
                             fontWeight: FontWeight.w600,

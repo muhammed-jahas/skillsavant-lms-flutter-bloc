@@ -58,8 +58,8 @@ class CourseModel {
       updatedAt: json['updated_at'],
       instructor: Instructor.fromJson(json['instructor']),
       subcategory: Subcategory.fromJson(json['subcategory']),
-     tags: List<Tag>.from((json['tags'] as List).map((tag) => Tag.fromJson(tag))),
-
+      tags: List<Tag>.from(
+          (json['tags'] as List).map((tag) => Tag.fromJson(tag),),),
     );
   }
 }
